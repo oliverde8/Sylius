@@ -38,3 +38,10 @@ To remove the endpoint you only need to delete the unnecessary configuration fro
     <itemOperation name="shop_select_shipping_method">
         <!-- ... -->
     </itemOperation>
+
+Good to Know
+-----------
+
+.. tip::
+
+    Api's related to orders attempts to prevent modifications to orders. Beside a few specific actions, it shouldn't be possible to edit orders unless they are still in state ``cart``. This is done by preventing orders not in the state ``cart`` from loading if the api's method is not ``GET``. So if you need to add an endpoint to an api that needs to edit orders that are not in the state ``cart`` you will need to whitelist your api. This can be done by adding your api's route to the ``sylius.api.doctrine_extension.order_shop_user_item.filter_cart.allowed_non_get_operations`` parameter. 
